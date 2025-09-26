@@ -8,7 +8,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import type { VideoWithDetails } from '@/entities/video';
 import type { User } from '@/entities/user';
-import { trackVideoView } from '@/features/video-analytics';
+import { trackVideoViewClient } from '@/features/video-analytics';
 
 interface VideoPlayerProps {
   video: VideoWithDetails;
@@ -138,7 +138,7 @@ export function VideoPlayer({ video, user, autoPlay = false, className }: VideoP
 
     // 시청 시간 추적 (30초마다)
     if (watchStartTime && currentTime > 0 && currentTime % 30 === 0) {
-      trackVideoView({
+      trackVideoViewClient({
         videoId: video.id,
         userId: user?.id || null,
         watchDuration: Math.floor(currentTime),
@@ -178,7 +178,7 @@ export function VideoPlayer({ video, user, autoPlay = false, className }: VideoP
       if (watchStartTime && videoRef.current) {
         const watchDuration = Math.floor(videoRef.current.currentTime);
         if (watchDuration > 0) {
-          trackVideoView({
+          trackVideoViewClient({
             videoId: video.id,
             userId: user?.id || null,
             watchDuration,

@@ -2,5 +2,5 @@
  * Video Analytics Feature Public API
  */
 
-export { trackVideoView } from './trackView';
+export { trackVideoViewClient, calculateEngagementScore } from './trackView';
 export type { TrackViewParams } from './trackView';

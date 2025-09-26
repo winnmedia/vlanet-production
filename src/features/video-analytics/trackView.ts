@@ -3,8 +3,6 @@
  * 영상 시청 기록 추적 기능
  */
 
-import { createServerClient } from '@/shared/api/supabase/server';
-
 export interface TrackViewParams {
   videoId: string;
   userId?: string | null;
@@ -16,83 +14,43 @@ export interface TrackViewParams {
   referrer?: string;
 }
 
+// trackVideoView 함수는 별도의 서버 전용 파일로 이동되었습니다.
+// API 라우트나 서버 액션에서만 사용하세요.
+
 /**
- * 영상 시청 기록 추가/업데이트
+ * 클라이언트 사이드 시청 추적 (API 호출)
  */
-export async function trackVideoView(params: TrackViewParams): Promise<{ success: boolean; error?: string }> {
+export async function trackVideoViewClient(params: Omit<TrackViewParams, 'ipAddress' | 'userAgent' | 'referrer' | 'sessionId'>): Promise<{ success: boolean; error?: string }> {
   try {
-    const supabase = await createServerClient();
+    // 브라우저 정보 수집
+    const sessionId = getOrCreateSessionId();
+    const userAgent = navigator.userAgent;
+    const referrer = document.referrer;
 
-    // 세션 ID 생성 (브라우저 측에서 제공되지 않은 경우)
-    const sessionId = params.sessionId || generateSessionId();
+    // API 라우트로 요청 전송
+    const response = await fetch('/api/analytics/track-view', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        ...params,
+        sessionId,
+        userAgent,
+        referrer,
+      }),
+    });
 
-    // 기존 시청 기록 확인 (같은 세션)
-    const { data: existingView } = await supabase
-      .from('video_views')
-      .select('id, watch_duration')
-      .eq('video_id', params.videoId)
-      .eq('session_id', sessionId)
-      .single();
-
-    if (existingView) {
-      // 기존 기록 업데이트 (더 긴 시청 시간으로만)
-      if (params.watchDuration > existingView.watch_duration) {
-        const { error } = await supabase
-          .from('video_views')
-          .update({
-            watch_duration: params.watchDuration,
-            updated_at: new Date().toISOString(),
-          })
-          .eq('id', existingView.id);
-
-        if (error) {
-          console.error('시청 기록 업데이트 오류:', error);
-          return { success: false, error: error.message };
-        }
-      }
-    } else {
-      // 새 시청 기록 생성
-      const { error } = await supabase
-        .from('video_views')
-        .insert({
-          video_id: params.videoId,
-          user_id: params.userId,
-          session_id: sessionId,
-          watch_duration: params.watchDuration,
-          total_duration: params.totalDuration,
-          ip_address: params.ipAddress,
-          user_agent: params.userAgent,
-          referrer: params.referrer,
-        });
-
-      if (error) {
-        console.error('시청 기록 생성 오류:', error);
-        return { success: false, error: error.message };
-      }
+    if (!response.ok) {
+      throw new Error('Failed to track view');
     }
 
-    return { success: true };
+    const result = await response.json();
+    return result;
   } catch (error) {
-    console.error('trackVideoView 예외:', error);
-    return { success: false, error: 'Failed to track video view' };
+    console.error('클라이언트 시청 추적 오류:', error);
+    return { success: false, error: 'Failed to track video view from client' };
   }
-}
-
-/**
- * 클라이언트 사이드 시청 추적
- */
-export function trackVideoViewClient(params: Omit<TrackViewParams, 'ipAddress' | 'userAgent' | 'referrer' | 'sessionId'>) {
-  // 브라우저 정보 수집
-  const sessionId = getOrCreateSessionId();
-  const userAgent = navigator.userAgent;
-  const referrer = document.referrer;
-
-  return trackVideoView({
-    ...params,
-    sessionId,
-    userAgent,
-    referrer,
-  });
 }
 
 /**
