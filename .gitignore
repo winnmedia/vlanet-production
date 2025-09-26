@@ -69,3 +69,4 @@ lhci-reports/
 # Bundle analysis
 analyze/
 bundle-analyzer-report.html
+.vercel
