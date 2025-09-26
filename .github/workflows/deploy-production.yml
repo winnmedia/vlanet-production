@@ -1,0 +1,147 @@
+# VLANET Production Deployment Pipeline
+# 프로덕션 배포 자동화 워크플로우
+
+name: Production Deployment
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      force_deploy:
+        description: '강제 배포 (테스트 실패 무시)'
+        type: boolean
+        default: false
+
+env:
+  NODE_VERSION: '18'
+  PNPM_VERSION: '8'
+
+jobs:
+  # 코드 품질 검사
+  quality-checks:
+    name: 품질 검사
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 코드 체크아웃
+        uses: actions/checkout@v4
+
+      - name: Node.js 설정
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: pnpm 설치
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: 의존성 설치
+        run: pnpm install --frozen-lockfile
+
+      - name: 타입 검사
+        run: pnpm type-check
+
+      - name: 린트 검사
+        run: pnpm lint
+
+      - name: 테스트 실행
+        run: pnpm test:ci
+
+      - name: 빌드 테스트
+        run: pnpm build
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.SUPABASE_URL_STAGING }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY_STAGING }}
+
+  # 데이터베이스 마이그레이션
+  database-migration:
+    name: 데이터베이스 마이그레이션
+    runs-on: ubuntu-latest
+    needs: quality-checks
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: 코드 체크아웃
+        uses: actions/checkout@v4
+
+      - name: Node.js 설정
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: pnpm 설치
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: 의존성 설치
+        run: pnpm install --frozen-lockfile
+
+      - name: Supabase CLI 설치
+        run: npm install -g supabase
+
+      - name: 마이그레이션 검증
+        run: node scripts/verify-migration.js
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.SUPABASE_URL_PRODUCTION }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY_PRODUCTION }}
+
+  # Vercel 배포
+  deploy-vercel:
+    name: Vercel 프로덕션 배포
+    runs-on: ubuntu-latest
+    needs: [quality-checks, database-migration]
+    if: github.ref == 'refs/heads/main' && (success() || github.event.inputs.force_deploy == 'true')
+
+    steps:
+      - name: 코드 체크아웃
+        uses: actions/checkout@v4
+
+      - name: Vercel CLI 설치
+        run: npm install -g vercel@latest
+
+      - name: Vercel 프로젝트 링크
+        run: vercel link --yes --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+      - name: 환경 변수 설정
+        run: |
+          vercel env add NEXT_PUBLIC_SUPABASE_URL production --token=${{ secrets.VERCEL_TOKEN }} --force <<< "${{ secrets.SUPABASE_URL_PRODUCTION }}"
+          vercel env add NEXT_PUBLIC_SUPABASE_ANON_KEY production --token=${{ secrets.VERCEL_TOKEN }} --force <<< "${{ secrets.SUPABASE_ANON_KEY_PRODUCTION }}"
+          vercel env add SUPABASE_SERVICE_ROLE_KEY production --token=${{ secrets.VERCEL_TOKEN }} --force <<< "${{ secrets.SUPABASE_SERVICE_ROLE_KEY_PRODUCTION }}"
+          vercel env add NEXT_PUBLIC_APP_URL production --token=${{ secrets.VERCEL_TOKEN }} --force <<< "https://vlanet.vercel.app"
+
+      - name: 프로덕션 배포
+        run: vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: 배포 결과 알림
+        if: success()
+        run: |
+          echo "✅ VLANET 프로덕션 배포 완료!"
+          echo "🌐 배포 URL: https://vlanet.vercel.app"
+
+  # 배포 후 검증
+  post-deploy-verification:
+    name: 배포 후 검증
+    runs-on: ubuntu-latest
+    needs: deploy-vercel
+    if: success()
+
+    steps:
+      - name: 헬스 체크
+        run: |
+          sleep 30  # 배포 완료 대기
+          curl -f https://vlanet.vercel.app/api/health || exit 1
+
+      - name: 핵심 페이지 검증
+        run: |
+          curl -f https://vlanet.vercel.app || exit 1
+          curl -f https://vlanet.vercel.app/videos || exit 1
+
+      - name: 성공 알림
+        if: success()
+        run: echo "🎉 VLANET 프로덕션 배포 및 검증 완료!"

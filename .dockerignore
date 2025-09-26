@@ -1,0 +1,121 @@
+# Docker 빌드에서 제외할 파일 및 디렉토리 목록
+# 이미지 크기 최적화와 빌드 시간 단축을 위함
+
+# Node.js 관련
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Next.js 빌드 출력 (빌드 시 새로 생성됨)
+.next
+out
+
+# 환경 변수 및 설정
+.env
+.env*.local
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# 로그 파일
+*.log
+
+# 런타임 데이터
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# 커버리지 및 테스트 결과
+coverage
+.nyc_output
+.coverage
+jest-results.xml
+
+# IDE 및 에디터 설정
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS 생성 파일
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Git 관련
+.git
+.gitignore
+.gitattributes
+
+# 문서 및 개발 전용 파일
+README.md
+docs/
+*.md
+!CHANGELOG.md
+
+# 개발 도구 설정
+.eslintrc*
+.prettierrc*
+.stylelintrc*
+jest.config.*
+playwright.config.*
+cypress.config.*
+lighthouserc.js
+
+# 개발 의존성 관련
+.husky
+.commitlintrc*
+
+# 번들 분석 결과
+.next/analyze
+
+# 임시 파일
+tmp/
+temp/
+
+# 캐시 디렉토리
+.cache
+.parcel-cache
+.next/cache
+
+# 로컬 환경 전용
+docker-compose.override.yml
+docker-compose.local.yml
+
+# 스크립트 (프로덕션에 불필요)
+scripts/
+
+# 테스트 파일
+**/__tests__/
+**/*.test.*
+**/*.spec.*
+cypress/
+e2e/
+
+# TypeScript 설정 (빌드 시 이미 처리됨)
+tsconfig.json
+tsconfig.*.json
+
+# Storybook
+.storybook/
+storybook-static/
+
+# 개발 전용 설정
+.editorconfig
+
+# 프로덕션에 불필요한 패키지 파일
+package-lock.json
+yarn.lock
+# pnpm-lock.yaml은 포함 (정확한 버전 관리를 위해)
+
+# 기타
+*.tsbuildinfo

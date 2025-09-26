@@ -1,0 +1,83 @@
+# Vercel 배포 시 제외할 파일들
+
+# 개발 및 테스트 파일
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+__tests__/
+test/
+coverage/
+.nyc_output/
+cypress/
+e2e/
+
+# 문서 및 설정 파일
+docs/
+README.md
+CHANGELOG.md
+CONTRIBUTING.md
+LICENSE
+.gitignore
+.editorconfig
+
+# 개발 도구 설정
+.vscode/
+.idea/
+*.sublime-*
+.DS_Store
+Thumbs.db
+
+# 로그 파일
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# 개발 종속성 캐시
+node_modules/.cache/
+.npm/
+.yarn/cache/
+.pnpm-store/
+
+# 임시 파일
+tmp/
+temp/
+*.tmp
+*.temp
+
+# 환경 설정 (보안)
+.env.local
+.env.development
+.env.test
+.env*.local
+
+# Build 아티팩트 (Vercel이 자체 빌드 수행)
+.next/
+out/
+dist/
+build/
+
+# 분석 도구 결과
+.next/analyze/
+bundle-analyzer-report.html
+
+# 에디터 설정
+.prettierrc
+.eslintrc*
+tailwind.config.js.bak
+
+# Git 관련
+.git/
+.gitattributes
+.mailmap
+
+# Scripts (프로덕션에서 불필요)
+scripts/verify-migration.js
+scripts/production-check.js
+
+# Lighthouse 설정
+.lighthouserc.js
+lighthouseci/

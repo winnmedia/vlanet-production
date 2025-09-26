@@ -1,0 +1,141 @@
+# VLANET Staging Deployment Pipeline
+# 스테이징 배포 자동화 워크플로우
+
+name: Staging Deployment
+
+on:
+  push:
+    branches: [develop, feature/*]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: '18'
+  PNPM_VERSION: '8'
+
+jobs:
+  # 코드 품질 검사 (스테이징용)
+  quality-checks:
+    name: 품질 검사 (스테이징)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 코드 체크아웃
+        uses: actions/checkout@v4
+
+      - name: Node.js 설정
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: pnpm 설치
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: 의존성 설치
+        run: pnpm install --frozen-lockfile
+
+      - name: 타입 검사
+        run: pnpm type-check
+
+      - name: 린트 검사
+        run: pnpm lint
+
+      - name: 단위 테스트
+        run: pnpm test:ci
+
+      - name: E2E 테스트 (Playwright)
+        run: pnpm test:e2e:ci
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.SUPABASE_URL_STAGING }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY_STAGING }}
+
+      - name: 빌드 테스트
+        run: pnpm build
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.SUPABASE_URL_STAGING }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY_STAGING }}
+
+  # 스테이징 데이터베이스 마이그레이션
+  staging-migration:
+    name: 스테이징 마이그레이션
+    runs-on: ubuntu-latest
+    needs: quality-checks
+    if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/main'
+
+    steps:
+      - name: 코드 체크아웃
+        uses: actions/checkout@v4
+
+      - name: Node.js 설정
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: pnpm 설치
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: 의존성 설치
+        run: pnpm install --frozen-lockfile
+
+      - name: 스테이징 마이그레이션 검증
+        run: node scripts/verify-migration.js
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.SUPABASE_URL_STAGING }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY_STAGING }}
+
+  # Vercel 스테이징 배포
+  deploy-staging:
+    name: Vercel 스테이징 배포
+    runs-on: ubuntu-latest
+    needs: [quality-checks, staging-migration]
+    if: success()
+
+    steps:
+      - name: 코드 체크아웃
+        uses: actions/checkout@v4
+
+      - name: Vercel CLI 설치
+        run: npm install -g vercel@latest
+
+      - name: Vercel 프로젝트 링크
+        run: vercel link --yes --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+      - name: 스테이징 환경 변수 설정
+        run: |
+          vercel env add NEXT_PUBLIC_SUPABASE_URL preview --token=${{ secrets.VERCEL_TOKEN }} --force <<< "${{ secrets.SUPABASE_URL_STAGING }}"
+          vercel env add NEXT_PUBLIC_SUPABASE_ANON_KEY preview --token=${{ secrets.VERCEL_TOKEN }} --force <<< "${{ secrets.SUPABASE_ANON_KEY_STAGING }}"
+          vercel env add SUPABASE_SERVICE_ROLE_KEY preview --token=${{ secrets.VERCEL_TOKEN }} --force <<< "${{ secrets.SUPABASE_SERVICE_ROLE_KEY_STAGING }}"
+          vercel env add NEXT_PUBLIC_APP_URL preview --token=${{ secrets.VERCEL_TOKEN }} --force <<< "https://vlanet-staging.vercel.app"
+
+      - name: 스테이징 배포
+        run: vercel deploy --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: 배포 URL 출력
+        run: echo "🚀 스테이징 배포 완료: $(vercel ls --token=${{ secrets.VERCEL_TOKEN }} | head -1)"
+
+  # 스테이징 검증
+  staging-verification:
+    name: 스테이징 검증
+    runs-on: ubuntu-latest
+    needs: deploy-staging
+    if: success()
+
+    steps:
+      - name: 스테이징 헬스 체크
+        run: |
+          sleep 30  # 배포 완료 대기
+          # 실제 스테이징 URL은 Vercel 배포 결과에서 가져와야 함
+          echo "스테이징 환경 검증 준비 완료"
+
+      - name: 자동화 테스트 실행
+        run: |
+          echo "스테이징 환경에서 자동화 테스트 실행"
+          # 추후 Cypress 또는 Playwright 스테이징 테스트 추가

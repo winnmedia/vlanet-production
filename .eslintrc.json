@@ -1,0 +1,72 @@
+{
+  "extends": [
+    "next/core-web-vitals",
+    "next/typescript"
+  ],
+  "rules": {
+    // FSD 아키텍처 경계 강제
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": [
+          {
+            "group": ["@/features/*/*"],
+            "message": "Use public API (index.ts) imports only. Import from @/features/*/index.ts"
+          },
+          {
+            "group": ["@/entities/*/*"],
+            "message": "Use public API (index.ts) imports only. Import from @/entities/*/index.ts"
+          },
+          {
+            "group": ["@/widgets/*/*"],
+            "message": "Use public API (index.ts) imports only. Import from @/widgets/*/index.ts"
+          },
+          {
+            "group": ["@/pages/*/*"],
+            "message": "Use public API (index.ts) imports only. Import from @/pages/*/index.ts"
+          },
+          {
+            "group": ["../../../*"],
+            "message": "Avoid deep relative imports. Use absolute imports with @/ prefix"
+          }
+        ]
+      }
+    ],
+
+    // TypeScript 엄격 규칙 (CLAUDE.md AI 금지사항)
+    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/no-unused-vars": ["error", {
+      "argsIgnorePattern": "^_",
+      "varsIgnorePattern": "^_"
+    }],
+    "@typescript-eslint/ban-ts-comment": [
+      "error",
+      {
+        "ts-ignore": "allow-with-description",
+        "ts-nocheck": true,
+        "minimumDescriptionLength": 10
+      }
+    ],
+
+    // React 규칙
+    "react/jsx-no-target-blank": "error",
+    "react/no-unescaped-entities": "error",
+
+    // 일반 규칙
+    "prefer-const": "error",
+    "no-var": "error",
+    "no-console": ["warn", { "allow": ["warn", "error"] }],
+
+    // Tailwind CSS 관련 (임의 값 금지는 별도 플러그인 필요)
+    "tailwindcss/no-arbitrary-value": "off" // 나중에 플러그인 추가 시 "error"로 변경
+  },
+
+  "overrides": [
+    {
+      "files": ["**/*.test.ts", "**/*.test.tsx", "**/*.spec.ts", "**/*.spec.tsx"],
+      "rules": {
+        "@typescript-eslint/no-explicit-any": "off"
+      }
+    }
+  ]
+}
