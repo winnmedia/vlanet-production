@@ -13,7 +13,8 @@ import {
   TrendingUp,
   Users
 } from 'lucide-react'
-import { getProposalStatsByUser, formatResponseRate } from '../../entities/proposal'
+import { getProposalStatsByUser } from '../../entities/proposal/api'
+import { formatResponseRate } from '../../entities/proposal'
 import type { ProfileRow } from '../../entities/user'
 
 interface ProposalStatsProps {

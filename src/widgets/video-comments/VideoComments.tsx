@@ -3,7 +3,7 @@
  * 영상 댓글 섹션 전체 컨테이너
  */
 
-import { getCommentsByVideoId } from '../../entities/comment'
+import { getCommentsByVideoId } from '../../entities/comment/api'
 import type { ProfileRow } from '../../entities/user'
 import { CommentForm } from '../../features/comments'
 import { CommentsList } from './CommentsList'
