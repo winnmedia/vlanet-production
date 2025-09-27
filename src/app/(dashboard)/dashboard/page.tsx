@@ -6,17 +6,17 @@
 import { Suspense } from 'react';
 import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
-import { getCurrentUser } from '@/features/auth';
-import { getCreatorVideos, getCreatorDashboardStats } from '@/entities/video/api';
-import { VideoGallery } from '@/widgets/video-gallery';
-import { Button } from '@/shared/ui/button';
-import { Card } from '@/shared/ui/card';
+import { getCurrentUser } from '../../../features/auth';
+import { getCreatorVideos, getCreatorDashboardStats } from '../../../entities/video/api';
+import { VideoGallery } from '../../../widgets/video-gallery';
+import { Button } from '../../../shared/ui/button';
+import { Card } from '../../../shared/ui/card';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
 
 // 피드백 피드 컴포넌트 (클라이언트 컴포넌트로 동적 로딩)
 const FeedbackFeed = dynamic(
-  () => import('@/widgets/feedback-feed').then((mod) => ({ default: mod.FeedbackFeed })),
+  () => import('../../../widgets/feedback-feed').then((mod) => ({ default: mod.FeedbackFeed })),
   {
     loading: () => (
       <Card className="p-6 animate-pulse">
