@@ -4,11 +4,11 @@
  */
 
 import { Metadata } from 'next';
-import { getCurrentUser } from '@/features/auth';
-import { Logo } from '@/shared/ui/logo';
-import { Button } from '@/shared/ui/button';
-import { Card } from '@/shared/ui/card';
-import { TrendingVideos } from '@/widgets/trending-videos';
+import { getCurrentUser } from '../features/auth';
+import { Logo } from '../shared/ui/logo';
+import { Button } from '../shared/ui/button';
+import { Card } from '../shared/ui/card';
+import { TrendingVideos } from '../widgets/trending-videos';
 import { Film, Briefcase, DollarSign } from 'lucide-react';
 
 export const metadata: Metadata = {
