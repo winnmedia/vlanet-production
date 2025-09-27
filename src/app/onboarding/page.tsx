@@ -6,13 +6,13 @@
 'use client';
 
 import { useState } from 'react';
-import { Logo } from '@/shared/ui/logo';
-import { Button } from '@/shared/ui/button';
-import { Input } from '@/shared/ui/input';
-import { Card } from '@/shared/ui/card';
-import { createOnboardingProfile } from '@/features/auth';
-import { USER_ROLES, ROLE_LABELS, ROLE_DESCRIPTIONS } from '@/entities/user';
-import type { UserRole } from '@/entities/user';
+import { Logo } from '../../shared/ui/logo';
+import { Button } from '../../shared/ui/button';
+import { Input } from '../../shared/ui/input';
+import { Card } from '../../shared/ui/card';
+import { createOnboardingProfile } from '../../features/auth';
+import { USER_ROLES, ROLE_LABELS, ROLE_DESCRIPTIONS } from '../../entities/user';
+import type { UserRole } from '../../entities/user';
 import { Sparkles, Palette, Briefcase } from 'lucide-react';
 
 export default function OnboardingPage() {
