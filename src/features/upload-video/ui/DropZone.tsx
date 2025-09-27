@@ -38,6 +38,12 @@ export function DropZone({
   // 비디오 메타데이터 추출
   const extractVideoMetadata = useCallback((file: File): Promise<VideoFileInfo> => {
     return new Promise((resolve, reject) => {
+      // 브라우저 환경 체크
+      if (typeof window === 'undefined' || typeof document === 'undefined') {
+        reject(new Error('브라우저 환경에서만 실행 가능합니다.'));
+        return;
+      }
+
       const video = document.createElement('video');
       const url = URL.createObjectURL(file);
 

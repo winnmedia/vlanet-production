@@ -99,7 +99,7 @@ export function VideoPlayer({ video, user, autoPlay = false, className }: VideoP
         videoRef.current.requestFullscreen();
       }
     } else {
-      if (document.exitFullscreen) {
+      if (typeof document !== 'undefined' && document.exitFullscreen) {
         document.exitFullscreen();
       }
     }
@@ -162,6 +162,8 @@ export function VideoPlayer({ video, user, autoPlay = false, className }: VideoP
 
   // 전체화면 상태 변경 감지
   useEffect(() => {
+    if (typeof document === 'undefined') return;
+
     const handleFullscreenChange = () => {
       setIsFullscreen(!!document.fullscreenElement);
     };
@@ -230,8 +232,10 @@ export function VideoPlayer({ video, user, autoPlay = false, className }: VideoP
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('keydown', handleKeyDown);
+      return () => window.removeEventListener('keydown', handleKeyDown);
+    }
   }, [togglePlay, duration]);
 
   if (hasError) {

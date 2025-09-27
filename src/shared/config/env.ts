@@ -162,7 +162,14 @@ function validateEnv() {
         console.error('\n🔒 보안 관련 설정을 확인해주세요.');
       }
     }
-    process.exit(1);
+
+    // Edge Runtime에서는 process.exit 사용 불가
+    if (typeof process !== 'undefined' && process.exit) {
+      process.exit(1);
+    } else {
+      // Edge Runtime에서는 에러를 throw
+      throw new Error('환경 변수 검증 실패');
+    }
   }
 }
 

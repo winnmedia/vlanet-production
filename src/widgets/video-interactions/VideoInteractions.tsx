@@ -103,12 +103,16 @@ export function VideoInteractions({ video, user, className }: VideoInteractionsP
 
   // 공유하기
   const handleShare = (method?: 'url' | 'social' | 'embed') => {
+    if (typeof window === 'undefined') return;
+
     const videoUrl = `${window.location.origin}/video/${video.id}`;
 
     switch (method) {
       case 'url':
-        navigator.clipboard.writeText(videoUrl);
-        alert('링크가 복사되었습니다.');
+        if (navigator?.clipboard) {
+          navigator.clipboard.writeText(videoUrl);
+          alert('링크가 복사되었습니다.');
+        }
         break;
       case 'social':
         // 소셜 미디어 공유 (예: 트위터)
@@ -119,8 +123,10 @@ export function VideoInteractions({ video, user, className }: VideoInteractionsP
         break;
       case 'embed':
         const embedCode = `<iframe src="${videoUrl}/embed" width="560" height="315" frameborder="0" allowfullscreen></iframe>`;
-        navigator.clipboard.writeText(embedCode);
-        alert('임베드 코드가 복사되었습니다.');
+        if (navigator?.clipboard) {
+          navigator.clipboard.writeText(embedCode);
+          alert('임베드 코드가 복사되었습니다.');
+        }
         break;
       default:
         setShowShareModal(true);
@@ -372,7 +378,7 @@ function ShareModal({
   onClose: () => void;
   onShare: (method: 'url' | 'social' | 'embed') => void;
 }) {
-  const videoUrl = `${window.location.origin}/video/${video.id}`;
+  const videoUrl = typeof window !== 'undefined' ? `${window.location.origin}/video/${video.id}` : '';
 
   const shareOptions = [
     {
