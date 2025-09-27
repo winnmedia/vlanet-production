@@ -3,7 +3,7 @@
  * 사이드바가 포함된 대시보드 페이지들의 공통 레이아웃
  */
 
-import { getCurrentUser } from '@/features/auth';
+import { getCurrentUser } from '../../features/auth';
 import { redirect } from 'next/navigation';
 import { DashboardLayoutClient } from './DashboardLayoutClient';
 

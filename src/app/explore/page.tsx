@@ -5,10 +5,10 @@
 
 import { Suspense } from 'react';
 import { Metadata } from 'next';
-import { getCurrentUser } from '@/features/auth';
-import { TrendingVideos } from '@/widgets/trending-videos';
-import { Card } from '@/shared/ui/card';
-import { Button } from '@/shared/ui/button';
+import { getCurrentUser } from '../../features/auth';
+import { TrendingVideos } from '../../widgets/trending-videos';
+import { Card } from '../../shared/ui/card';
+import { Button } from '../../shared/ui/button';
 import { Search, Palette, Film, Camera, TreePine, Building2, Rocket, Sparkles, Bot } from 'lucide-react';
 
 export const metadata: Metadata = {
