@@ -6,11 +6,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import type { VideoWithDetails } from '@/entities/video';
-import type { User } from '@/entities/user';
-import { toggleVideoReaction, addInvestmentInterest, shareVideo } from '@/features/video-interactions';
-import { Button } from '@/shared/ui/button';
-import { Card } from '@/shared/ui/card';
+import type { VideoWithDetails } from '../../entities/video';
+import type { User } from '../../entities/user';
+import { toggleVideoReaction, addInvestmentInterest, shareVideo } from '../../features/video-interactions';
+import { Button } from '../../shared/ui/button';
+import { Card } from '../../shared/ui/card';
 
 interface VideoInteractionsProps {
   video: VideoWithDetails;

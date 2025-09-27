@@ -38,7 +38,7 @@ export type {
 } from './types';
 
 // API Functions are available from './api' for server-side usage
-// Import directly: import { getVideoById } from '@/entities/video/api'
+// Import directly: import { getVideoById } from './api'
 
 // Constants export
 export {

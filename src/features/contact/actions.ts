@@ -14,13 +14,13 @@ import {
   deleteProposal,
   createMessage,
   markNotificationAsRead,
-} from '@/entities/proposal/api';
+} from '../../entities/proposal/api';
 import {
   validateProposal,
   validateMessage,
   sanitizeProposalContent
-} from '@/entities/proposal'
-import { getCurrentUser } from '@/features/auth'
+} from '../../entities/proposal'
+import { getCurrentUser } from '../auth'
 
 // 제안 생성 스키마
 const CreateProposalSchema = z.object({

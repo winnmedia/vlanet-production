@@ -41,7 +41,7 @@ export type {
 } from './types'
 
 // API Functions are available from './api' for server-side usage
-// Import directly: import { getProposalsByUser } from '@/entities/proposal/api'
+// Import directly: import { getProposalsByUser } from './api'
 
 // Utility Functions
 export {

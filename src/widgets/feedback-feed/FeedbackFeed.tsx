@@ -21,8 +21,8 @@ import {
   Bell,
   Star
 } from 'lucide-react';
-import { Button } from '@/shared/ui/button';
-import { Card } from '@/shared/ui/card';
+import { Button } from '../../shared/ui/button';
+import { Card } from '../../shared/ui/card';
 
 interface Comment {
   id: string;

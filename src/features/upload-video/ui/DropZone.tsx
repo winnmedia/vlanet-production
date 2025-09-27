@@ -6,7 +6,7 @@
 'use client';
 
 import { useState, useCallback, useRef } from 'react';
-import { validateVideoFile, validateVideoCodec, VIDEO_CONSTRAINTS, formatFileSize } from '@/entities/video';
+import { validateVideoFile, validateVideoCodec, VIDEO_CONSTRAINTS, formatFileSize } from '../../../entities/video';
 
 interface VideoFileInfo {
   file: File;

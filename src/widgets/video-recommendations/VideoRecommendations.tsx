@@ -8,8 +8,8 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import type { VideoWithDetails } from '@/entities/video';
-import { formatDuration, formatFileSize } from '@/entities/video';
+import type { VideoWithDetails } from '../../entities/video';
+import { formatDuration, formatFileSize } from '../../entities/video';
 
 interface VideoRecommendationsProps {
   currentVideoId: string;

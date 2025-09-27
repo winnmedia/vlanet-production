@@ -6,13 +6,13 @@
 'use client'
 
 import { useState, useRef, useEffect, useTransition } from 'react'
-import { Button } from '@/shared/ui/button'
-import { Card } from '@/shared/ui/card'
+import { Button } from '../../../shared/ui/button'
+import { Card } from '../../../shared/ui/card'
 import { Send, Loader2, RefreshCw } from 'lucide-react'
 import { createMessageAction } from '../actions'
-import { formatProposalTime, validateMessage } from '@/entities/proposal'
-import type { ProposalMessageWithAuthor } from '@/entities/proposal'
-import type { ProfileRow } from '@/entities/user'
+import { formatProposalTime, validateMessage } from '../../../entities/proposal'
+import type { ProposalMessageWithAuthor } from '../../../entities/proposal'
+import type { ProfileRow } from '../../../entities/user'
 
 interface MessageThreadProps {
   proposalId: string

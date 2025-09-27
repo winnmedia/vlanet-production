@@ -5,7 +5,7 @@
 
 'use server';
 
-import { createServerClient } from '@/shared/api/supabase/server';
+import { createServerClient } from '../../shared/api/supabase/server';
 
 export interface InvestmentInterestParams {
   videoId: string;

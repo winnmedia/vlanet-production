@@ -6,7 +6,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { VideoGallery } from '../VideoGallery';
-import type { VideoWithStats } from '@/entities/video';
+import type { VideoWithStats } from '../../../entities/video';
 
 // VideoCard는 VideoGallery 내부 컴포넌트이므로 별도 모킹 불필요
 

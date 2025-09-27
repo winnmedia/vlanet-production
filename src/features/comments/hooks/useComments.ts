@@ -6,12 +6,12 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
-import { createClient } from '@/shared/api/supabase/client'
+import { createClient } from '../../../shared/api/supabase/client'
 import type {
   CommentWithAuthor,
   CommentListOptions,
   CommentsResponse
-} from '@/entities/comment'
+} from '../../../entities/comment'
 
 export interface UseCommentsOptions {
   videoId: string

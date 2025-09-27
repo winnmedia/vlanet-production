@@ -7,8 +7,8 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Button } from '@/shared/ui/button'
-import { Card } from '@/shared/ui/card'
+import { Button } from '../../../shared/ui/button'
+import { Card } from '../../../shared/ui/card'
 import {
   MessageSquare,
   Calendar,
@@ -27,9 +27,9 @@ import {
   formatBudgetRange,
   getProposalSummary,
   getProposalStatusOptions
-} from '@/entities/proposal'
-import type { ProposalWithAuthor, ProposalStatus } from '@/entities/proposal'
-import type { ProfileRow } from '@/entities/user'
+} from '../../../entities/proposal'
+import type { ProposalWithAuthor, ProposalStatus } from '../../../entities/proposal'
+import type { ProfileRow } from '../../../entities/user'
 
 interface ProposalListProps {
   proposals: ProposalWithAuthor[]

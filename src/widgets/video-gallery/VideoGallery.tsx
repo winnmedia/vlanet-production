@@ -22,8 +22,8 @@ import {
   Lock,
   FileText
 } from 'lucide-react';
-import { Button } from '@/shared/ui/button';
-import type { VideoWithStats } from '@/entities/video';
+import { Button } from '../../shared/ui/button';
+import type { VideoWithStats } from '../../entities/video';
 
 interface VideoGalleryProps {
   videos: VideoWithStats[];

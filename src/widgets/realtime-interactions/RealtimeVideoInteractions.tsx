@@ -6,11 +6,11 @@
 'use client';
 
 import { useState, useTransition, useOptimistic } from 'react';
-import type { VideoWithDetails } from '@/entities/video';
-import type { User } from '@/entities/user';
-import { toggleVideoReaction, addInvestmentInterest, cancelInvestmentInterest } from '@/features/video-interactions';
-import { Button } from '@/shared/ui/button';
-import { Card } from '@/shared/ui/card';
+import type { VideoWithDetails } from '../../entities/video';
+import type { User } from '../../entities/user';
+import { toggleVideoReaction, addInvestmentInterest, cancelInvestmentInterest } from '../../features/video-interactions';
+import { Button } from '../../shared/ui/button';
+import { Card } from '../../shared/ui/card';
 
 interface RealtimeVideoInteractionsProps {
   video: VideoWithDetails;

@@ -6,8 +6,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import type { VideoStatus } from '@/entities/video';
-import { VIDEO_STATUS_LABELS, getVideoStatusColor } from '@/entities/video';
+import type { VideoStatus } from '../../../entities/video';
+import { VIDEO_STATUS_LABELS, getVideoStatusColor } from '../../../entities/video';
 
 interface UploadProgressProps {
   videoId: string;

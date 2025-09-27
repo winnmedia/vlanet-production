@@ -6,11 +6,11 @@
 'use client'
 
 import { useState, useTransition, useOptimistic } from 'react'
-import { Button } from '@/shared/ui/button'
-import { Card } from '@/shared/ui/card'
+import { Button } from '../../../shared/ui/button'
+import { Card } from '../../../shared/ui/card'
 import { addComment, editComment } from '../actions'
-import type { ProfileRow } from '@/entities/user'
-import type { CommentWithAuthor } from '@/entities/comment'
+import type { ProfileRow } from '../../../entities/user'
+import type { CommentWithAuthor } from '../../../entities/comment'
 
 interface CommentFormProps {
   videoId: string

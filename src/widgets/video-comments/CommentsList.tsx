@@ -7,11 +7,11 @@
 
 import { useState, useEffect } from 'react'
 import { ChevronDown, MessageSquare, RefreshCw } from 'lucide-react'
-import { Button } from '@/shared/ui/button'
-import { Card } from '@/shared/ui/card'
-import { CommentItem, useComments } from '@/features/comments'
-import type { ProfileRow } from '@/entities/user'
-import type { CommentWithAuthor } from '@/entities/comment'
+import { Button } from '../../shared/ui/button'
+import { Card } from '../../shared/ui/card'
+import { CommentItem, useComments } from '../../features/comments'
+import type { ProfileRow } from '../../entities/user'
+import type { CommentWithAuthor } from '../../entities/comment'
 
 interface CommentsListProps {
   videoId: string

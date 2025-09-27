@@ -12,7 +12,7 @@ export {
   isTest,
   isFeatureEnabled,
   type Env,
-} from '@/shared/config/env';
+} from '../../config/env';
 
 // 입력 검증 및 새니타이제이션
 export {

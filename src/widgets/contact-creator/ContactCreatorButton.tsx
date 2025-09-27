@@ -7,11 +7,11 @@
 
 import { useState } from 'react'
 import { MessageSquare, X, User, Play } from 'lucide-react'
-import { Button } from '@/shared/ui/button'
-import { Card } from '@/shared/ui/card'
-import { ProposalForm } from '@/features/contact'
-import type { ProfileRow } from '@/entities/user'
-import type { Video } from '@/entities/video'
+import { Button } from '../../shared/ui/button'
+import { Card } from '../../shared/ui/card'
+import { ProposalForm } from '../../features/contact'
+import type { ProfileRow } from '../../entities/user'
+import type { Video } from '../../entities/video'
 
 interface ContactCreatorButtonProps {
   video: Video & { creator?: ProfileRow }

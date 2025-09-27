@@ -7,10 +7,10 @@
 
 import { useState, useTransition } from 'react'
 import { MoreHorizontal, MessageSquare, Edit3, Trash2, Flag } from 'lucide-react'
-import { Button } from '@/shared/ui/button'
-import type { ProfileRow } from '@/entities/user'
-import type { CommentWithAuthor } from '@/entities/comment'
-import { formatTimeAgo, canEditComment, canDeleteComment } from '@/entities/comment'
+import { Button } from '../../../shared/ui/button'
+import type { ProfileRow } from '../../../entities/user'
+import type { CommentWithAuthor } from '../../../entities/comment'
+import { formatTimeAgo, canEditComment, canDeleteComment } from '../../../entities/comment'
 import { removeComment } from '../actions'
 import { CommentForm } from './CommentForm'
 

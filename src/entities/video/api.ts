@@ -3,7 +3,7 @@
  * 영상 관련 Supabase 데이터베이스 접근 함수들
  */
 
-import { createServerClient } from '@/shared/api/supabase/server';
+import { createServerClient } from '../../shared/api/supabase/server';
 import type {
   Video,
   VideoWithDetails,

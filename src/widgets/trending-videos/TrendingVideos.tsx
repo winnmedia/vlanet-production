@@ -7,10 +7,10 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import type { TrendingVideo } from '@/entities/video';
-import { formatDuration } from '@/entities/video';
-import { Card } from '@/shared/ui/card';
-import { Button } from '@/shared/ui/button';
+import type { TrendingVideo } from '../../entities/video';
+import { formatDuration } from '../../entities/video';
+import { Card } from '../../shared/ui/card';
+import { Button } from '../../shared/ui/button';
 
 interface TrendingVideosProps {
   limit?: number;

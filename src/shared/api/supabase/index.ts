@@ -10,7 +10,7 @@ export { createClient as createBrowserClient, getSupabaseClient } from './client
 export { createMiddlewareClient } from './middleware';
 
 // 서버 사이드 함수들은 직접 import해야 함
-// import { createServerClient, createServiceClient } from '@/shared/api/supabase/server';
+// import { createServerClient, createServiceClient } from './server';
 
 // 타입 정의
 import type { SupabaseClient } from '@supabase/supabase-js';

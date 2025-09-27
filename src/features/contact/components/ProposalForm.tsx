@@ -6,13 +6,13 @@
 'use client'
 
 import { useState, useTransition } from 'react'
-import { Button } from '@/shared/ui/button'
-import { Input } from '@/shared/ui/input'
-import { Card } from '@/shared/ui/card'
+import { Button } from '../../../shared/ui/button'
+import { Input } from '../../../shared/ui/input'
+import { Card } from '../../../shared/ui/card'
 import { Send, Loader2 } from 'lucide-react'
 import { createProposalAction } from '../actions'
-import { validateProposal } from '@/entities/proposal'
-import type { ProfileRow } from '@/entities/user'
+import { validateProposal } from '../../../entities/proposal'
+import type { ProfileRow } from '../../../entities/user'
 
 interface ProposalFormProps {
   creator: ProfileRow

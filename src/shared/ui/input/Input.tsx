@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from '@/shared/lib/utils';
-import { useId, aria } from '@/shared/lib/accessibility';
+import { cn } from '../../lib/utils';
+import { useId, aria } from '../../lib/accessibility';
 
 const inputVariants = cva(
   [

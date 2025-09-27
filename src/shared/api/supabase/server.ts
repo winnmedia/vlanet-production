@@ -5,7 +5,7 @@
 
 import { createServerClient as createSupabaseClient, type CookieOptions } from '@supabase/ssr';
 import { cookies } from 'next/headers';
-import { env } from '@/shared/config/env';
+import { env } from '../../config/env';
 
 export async function createServerClient() {
   const cookieStore = await cookies();

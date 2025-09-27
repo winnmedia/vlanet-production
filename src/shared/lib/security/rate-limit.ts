@@ -4,7 +4,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { env } from '@/shared/config/env';
+import { env } from '../../config/env';
 
 interface RateLimitConfig {
   requests: number; // 허용 요청 수

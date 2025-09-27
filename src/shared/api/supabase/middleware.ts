@@ -5,7 +5,7 @@
 
 import { createServerClient, type CookieOptions } from '@supabase/ssr';
 import { type NextRequest, NextResponse } from 'next/server';
-import { env } from '@/shared/config/env';
+import { env } from '../../config/env';
 
 export function createMiddlewareClient(request: NextRequest) {
   // 응답 객체 생성

@@ -6,9 +6,9 @@
 'use client';
 
 import { useState, useRef, useEffect, useCallback } from 'react';
-import type { VideoWithDetails } from '@/entities/video';
-import type { User } from '@/entities/user';
-import { trackVideoViewClient } from '@/features/video-analytics';
+import type { VideoWithDetails } from '../../entities/video';
+import type { User } from '../../entities/user';
+import { trackVideoViewClient } from '../../features/video-analytics';
 
 interface VideoPlayerProps {
   video: VideoWithDetails;

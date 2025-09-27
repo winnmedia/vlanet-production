@@ -6,7 +6,7 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { FeedbackFeed } from '../FeedbackFeed';
-import type { Comment, Proposal } from '@/entities/comment';
+import type { Comment, Proposal } from '../../../entities/comment';
 
 // Card 컴포넌트 모킹
 jest.mock('@/shared/ui/card', () => ({

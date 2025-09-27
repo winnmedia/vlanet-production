@@ -7,7 +7,7 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
-import { cn } from '@/shared/lib/utils';
+import { cn } from '../../lib/utils';
 
 interface OptimizedImageProps {
   src: string | null | undefined;

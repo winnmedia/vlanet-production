@@ -4,7 +4,7 @@
  */
 
 import { getCLS, getFCP, getFID, getLCP, getTTFB } from 'web-vitals';
-import { reportError } from '@/shared/lib/error-handling';
+import { reportError } from '../error-handling';
 
 export interface PerformanceMetric {
   name: string;

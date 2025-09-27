@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from '@/shared/lib/utils';
-import { ScreenReaderOnly, aria } from '@/shared/lib/accessibility';
+import { cn } from '../../lib/utils';
+import { ScreenReaderOnly, aria } from '../../lib/accessibility';
 
 const buttonVariants = cva(
   // 기본 스타일

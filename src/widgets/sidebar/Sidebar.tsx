@@ -33,8 +33,8 @@ import {
   X,
   Menu,
 } from 'lucide-react';
-import { Logo } from '@/shared/ui/logo';
-import type { UserRole } from '@/entities/user';
+import { Logo } from '../../shared/ui/logo';
+import type { UserRole } from '../../entities/user';
 
 export interface SidebarProps {
   userRole: UserRole;

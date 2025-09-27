@@ -3,7 +3,7 @@
  * 영상 관련 모든 TypeScript 타입 정의
  */
 
-import { Database } from '@/shared/api/supabase/types';
+import { Database } from '../../shared/api/supabase/types';
 
 // Supabase 테이블 타입 추출
 export type VideoRow = Database['public']['Tables']['videos']['Row'];

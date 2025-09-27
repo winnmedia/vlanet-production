@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from '@/shared/lib/utils';
+import { cn } from '../../lib/utils';
 
 const cardVariants = cva(
   ['rounded-xl bg-white transition-all duration-200'],

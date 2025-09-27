@@ -6,7 +6,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Input } from '../index';
-import { testAccessibility, ariaAttrs, keyboardNav } from '@/shared/lib/accessibility/test-helpers';
+import { testAccessibility, ariaAttrs, keyboardNav } from '../../../lib/accessibility/test-helpers';
 
 // Mock icons for testing
 const MockIcon = ({ testId = 'mock-icon' }: { testId?: string }) => (

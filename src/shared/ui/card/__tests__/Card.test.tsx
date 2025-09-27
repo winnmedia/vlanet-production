@@ -13,7 +13,7 @@ import {
   CardContent,
   CardFooter,
 } from '../index';
-import { testAccessibility, ariaAttrs, keyboardNav } from '@/shared/lib/accessibility/test-helpers';
+import { testAccessibility, ariaAttrs, keyboardNav } from '../../../lib/accessibility/test-helpers';
 
 describe('Card', () => {
   describe('기본 렌더링', () => {

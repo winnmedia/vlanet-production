@@ -7,8 +7,8 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import type { VideoWithDetails } from '@/entities/video';
-import { formatDuration, formatFileSize, VIDEO_STATUS_LABELS, getVideoStatusColor } from '@/entities/video';
+import type { VideoWithDetails } from '../../entities/video';
+import { formatDuration, formatFileSize, VIDEO_STATUS_LABELS, getVideoStatusColor } from '../../entities/video';
 
 interface VideoCardProps {
   video: VideoWithDetails;

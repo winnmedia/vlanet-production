@@ -6,7 +6,7 @@
 'use client';
 
 import { lazy, Suspense, ComponentType, useState, useEffect, useRef } from 'react';
-import { cn } from '@/shared/lib/utils';
+import { cn } from '../../lib/utils';
 
 // 로딩 스피너 컴포넌트
 function LoadingSpinner({ className }: { className?: string }) {

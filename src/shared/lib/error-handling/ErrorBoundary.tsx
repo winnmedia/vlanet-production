@@ -2,8 +2,8 @@
 
 import { Component, ReactNode, ErrorInfo } from 'react';
 import * as Sentry from '@sentry/nextjs';
-import { Button } from '@/shared/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/shared/ui/card';
+import { Button } from '../../ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '../../ui/card';
 
 interface Props {
   children: ReactNode;

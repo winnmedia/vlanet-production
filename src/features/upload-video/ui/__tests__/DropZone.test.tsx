@@ -6,7 +6,7 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { DropZone } from '../DropZone';
-import { testAccessibility, ariaAttrs, screenReader } from '@/shared/lib/accessibility/test-helpers';
+import { testAccessibility, ariaAttrs, screenReader } from '../../../../shared/lib/accessibility/test-helpers';
 
 // Mock video element and URL methods
 const mockVideoElement = {

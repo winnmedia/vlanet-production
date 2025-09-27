@@ -3,8 +3,8 @@
  * 사용자 관련 Supabase 데이터 접근 함수들
  */
 
-import { createServerClient } from '@/shared/api/supabase/server';
-import { createServiceClient } from '@/shared/api/supabase/server';
+import { createServerClient } from '../../shared/api/supabase/server';
+import { createServiceClient } from '../../shared/api/supabase/server';
 import type {
   ProfileRow,
   ProfileInput,

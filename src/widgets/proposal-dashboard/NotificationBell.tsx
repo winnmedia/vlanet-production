@@ -7,17 +7,17 @@
 
 import { useState, useEffect } from 'react'
 import { Bell, X, Eye, MessageSquare } from 'lucide-react'
-import { Button } from '@/shared/ui/button'
-import { Card } from '@/shared/ui/card'
+import { Button } from '../../shared/ui/button'
+import { Card } from '../../shared/ui/card'
 import {
   getNotificationsByUser,
   getNotificationTypeText,
   getNotificationIcon,
   formatProposalTime
-} from '@/entities/proposal'
-import { markNotificationAsReadAction } from '@/features/contact'
-import type { Notification } from '@/entities/proposal'
-import type { ProfileRow } from '@/entities/user'
+} from '../../entities/proposal'
+import { markNotificationAsReadAction } from '../../features/contact'
+import type { Notification } from '../../entities/proposal'
+import type { ProfileRow } from '../../entities/user'
 
 interface NotificationBellProps {
   user: ProfileRow

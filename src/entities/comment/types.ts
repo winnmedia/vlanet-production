@@ -3,7 +3,7 @@
  * 댓글 도메인 모델 타입 정의
  */
 
-import type { User } from '@/entities/user'
+import type { User } from '../user'
 
 /**
  * 기본 댓글 타입 (데이터베이스 스키마)

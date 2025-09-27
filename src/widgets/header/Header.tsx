@@ -6,11 +6,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Logo } from '@/shared/ui/logo';
-import { Button } from '@/shared/ui/button';
-import { getCurrentUser } from '@/features/auth';
-import { SearchModal } from '@/widgets/search';
-import { ProfileDropdown } from '@/widgets/profile-dropdown';
+import { Logo } from '../../shared/ui/logo';
+import { Button } from '../../shared/ui/button';
+import { getCurrentUser } from '../../features/auth';
+import { SearchModal } from '../search';
+import { ProfileDropdown } from '../profile-dropdown';
 import { Search, Bell, Menu } from 'lucide-react';
 
 interface HeaderProps {

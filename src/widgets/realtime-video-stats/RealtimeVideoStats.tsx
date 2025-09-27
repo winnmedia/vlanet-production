@@ -5,9 +5,9 @@
 
 'use client';
 
-import { useRealtimeVideoStats } from '@/features/realtime-updates';
-import type { VideoWithDetails } from '@/entities/video';
-import type { VideoStats } from '@/entities/video';
+import { useRealtimeVideoStats } from '../../features/realtime-updates';
+import type { VideoWithDetails } from '../../entities/video';
+import type { VideoStats } from '../../entities/video';
 
 interface RealtimeVideoStatsProps {
   video: VideoWithDetails;

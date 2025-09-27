@@ -3,7 +3,7 @@
  * 제안 시스템 데이터베이스 접근 함수들
  */
 
-import { createServerClient } from '@/shared/api/supabase/server'
+import { createServerClient } from '../../shared/api/supabase/server'
 import type {
   Proposal,
   ProposalWithAuthor,

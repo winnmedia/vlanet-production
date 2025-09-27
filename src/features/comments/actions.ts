@@ -10,7 +10,7 @@ import {
   createComment as createCommentEntity,
   updateComment as updateCommentEntity,
   deleteComment as deleteCommentEntity,
-} from '@/entities/comment/api';
+} from '../../entities/comment/api';
 import {
   type CreateCommentData,
   type UpdateCommentData,
@@ -18,7 +18,7 @@ import {
   type DeleteCommentResult,
   sanitizeCommentContent,
   isValidComment
-} from '@/entities/comment'
+} from '../../entities/comment'
 
 /**
  * 댓글 작성 Server Action

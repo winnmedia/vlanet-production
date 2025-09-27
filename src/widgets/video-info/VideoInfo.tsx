@@ -8,12 +8,12 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import type { VideoWithDetails } from '@/entities/video';
-import type { User } from '@/entities/user';
-import { formatDuration, formatFileSize, getVideoAspectRatio } from '@/entities/video';
-import { Button } from '@/shared/ui/button';
-import { Card } from '@/shared/ui/card';
-import { RealtimeVideoStats } from '@/widgets/realtime-video-stats';
+import type { VideoWithDetails } from '../../entities/video';
+import type { User } from '../../entities/user';
+import { formatDuration, formatFileSize, getVideoAspectRatio } from '../../entities/video';
+import { Button } from '../../shared/ui/button';
+import { Card } from '../../shared/ui/card';
+import { RealtimeVideoStats } from '../realtime-video-stats';
 
 interface VideoInfoProps {
   video: VideoWithDetails;

@@ -3,7 +3,7 @@
  * 제안(투자/협업) 시스템 타입 정의
  */
 
-import type { ProfileRow } from '@/entities/user'
+import type { ProfileRow } from '../user'
 
 // 제안 상태
 export type ProposalStatus = 'PENDING' | 'ACCEPTED' | 'REJECTED' | 'ARCHIVED'

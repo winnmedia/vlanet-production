@@ -6,8 +6,8 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { VideoCard } from '../VideoCard';
-import type { VideoWithDetails } from '@/entities/video';
-import { testAccessibility, ariaAttrs, keyboardNav } from '@/shared/lib/accessibility/test-helpers';
+import type { VideoWithDetails } from '../../../entities/video';
+import { testAccessibility, ariaAttrs, keyboardNav } from '../../../shared/lib/accessibility/test-helpers';
 
 // Mock Next.js Link component
 jest.mock('next/link', () => {

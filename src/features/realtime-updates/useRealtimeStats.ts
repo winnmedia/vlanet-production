@@ -6,8 +6,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { createClient } from '@/shared/api/supabase/client';
-import type { VideoStats } from '@/entities/video';
+import { createClient } from '../../shared/api/supabase/client';
+import type { VideoStats } from '../../entities/video';
 
 interface UseRealtimeVideoStatsOptions {
   videoId: string;

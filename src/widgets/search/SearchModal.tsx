@@ -7,9 +7,9 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { Search, Film, User, Hash, Loader2, X } from 'lucide-react';
-import { Card } from '@/shared/ui/card';
-import { Button } from '@/shared/ui/button';
-import { Input } from '@/shared/ui/input';
+import { Card } from '../../shared/ui/card';
+import { Button } from '../../shared/ui/button';
+import { Input } from '../../shared/ui/input';
 
 interface SearchResult {
   id: string;

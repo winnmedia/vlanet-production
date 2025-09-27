@@ -3,7 +3,7 @@
  * 제안 통계 위젯 - 대시보드용
  */
 
-import { Card } from '@/shared/ui/card'
+import { Card } from '../../shared/ui/card'
 import {
   Send,
   Inbox,
@@ -13,8 +13,8 @@ import {
   TrendingUp,
   Users
 } from 'lucide-react'
-import { getProposalStatsByUser, formatResponseRate } from '@/entities/proposal'
-import type { ProfileRow } from '@/entities/user'
+import { getProposalStatsByUser, formatResponseRate } from '../../entities/proposal'
+import type { ProfileRow } from '../../entities/user'
 
 interface ProposalStatsProps {
   user: ProfileRow

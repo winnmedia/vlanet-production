@@ -18,11 +18,11 @@ import {
   Shield,
   HelpCircle
 } from 'lucide-react';
-import { Button } from '@/shared/ui/button';
-import { Card } from '@/shared/ui/card';
-import { signOut } from '@/features/auth';
-import { ROLE_LABELS, type UserRole } from '@/entities/user';
-import type { getCurrentUser } from '@/features/auth';
+import { Button } from '../../shared/ui/button';
+import { Card } from '../../shared/ui/card';
+import { signOut } from '../../features/auth';
+import { ROLE_LABELS, type UserRole } from '../../entities/user';
+import type { getCurrentUser } from '../../features/auth';
 
 interface ProfileDropdownProps {
   user: NonNullable<Awaited<ReturnType<typeof getCurrentUser>>>;

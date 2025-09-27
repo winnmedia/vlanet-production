@@ -7,7 +7,7 @@
 
 import { useState, useEffect } from 'react';
 import { VideoCard } from './VideoCard';
-import type { VideoWithDetails, VideoFilters, VideoSortOptions } from '@/entities/video';
+import type { VideoWithDetails, VideoFilters, VideoSortOptions } from '../../entities/video';
 
 interface VideoGridProps {
   videos: VideoWithDetails[];

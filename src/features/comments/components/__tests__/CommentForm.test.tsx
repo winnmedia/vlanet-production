@@ -6,8 +6,8 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { CommentForm } from '../CommentForm'
-import type { User } from '@/entities/user'
-import type { CommentWithAuthor } from '@/entities/comment'
+import type { User } from '../../../../entities/user'
+import type { CommentWithAuthor } from '../../../../entities/comment'
 
 // Mock server actions
 jest.mock('../../actions', () => ({
