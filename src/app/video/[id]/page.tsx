@@ -6,15 +6,15 @@
 import { Suspense } from 'react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { getVideoById } from '@/entities/video/api';
-import { getCurrentUser } from '@/features/auth';
-import type { User } from '@/entities/user';
-import { VideoPlayer } from '@/widgets/video-player';
-import { VideoInfo } from '@/widgets/video-info';
-import { RealtimeVideoInteractions } from '@/widgets/realtime-interactions';
-import { VideoRecommendations } from '@/widgets/video-recommendations';
-import { VideoComments } from '@/widgets/video-comments';
-import { ContactCreatorButton } from '@/widgets/contact-creator';
+import { getVideoById } from '../../../entities/video/api';
+import { getCurrentUser } from '../../../features/auth';
+import type { User } from '../../../entities/user';
+import { VideoPlayer } from '../../../widgets/video-player';
+import { VideoInfo } from '../../../widgets/video-info';
+import { RealtimeVideoInteractions } from '../../../widgets/realtime-interactions';
+import { VideoRecommendations } from '../../../widgets/video-recommendations';
+import { VideoComments } from '../../../widgets/video-comments';
+import { ContactCreatorButton } from '../../../widgets/contact-creator';
 
 interface VideoPageProps {
   params: {
