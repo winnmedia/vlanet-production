@@ -33,9 +33,10 @@ const nextConfig = {
     formats: ['image/webp', 'image/avif'],
   },
 
-  // 실험적 기능 (CSS 최적화 비활성화)
+  // 실험적 기능 (CSS 최적화 완전 비활성화)
   experimental: {
     // optimizeCss: true, // critters 의존성으로 인해 임시 비활성화
+    optimizeCss: false, // CSS 청크 분리 문제 방지
     scrollRestoration: true,
   },
 
@@ -45,7 +46,7 @@ const nextConfig = {
   // 압축 최적화
   compress: true,
 
-  // 번들 최적화
+  // 번들 최적화 (CSS/JS 분리 개선)
   webpack: (config, { dev, isServer }) => {
     // 프로덕션 빌드 최적화
     if (!dev) {
@@ -53,16 +54,17 @@ const nextConfig = {
         cacheGroups: {
           default: false,
           vendors: false,
-          // 벤더 청크 최적화
+          // 벤더 청크 최적화 (CSS 제외)
           vendor: {
             chunks: 'all',
-            test: /node_modules/,
+            test: /[\\/]node_modules[\\/].*\.js$/,
             name: 'vendors',
             enforce: true,
           },
-          // 공통 청크
+          // 공통 청크 (CSS 제외)
           common: {
             chunks: 'all',
+            test: /\.js$/,
             minChunks: 2,
             priority: 10,
             reuseExistingChunk: true,
