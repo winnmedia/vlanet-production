@@ -1,7 +1,7 @@
 import React from 'react';
 import { cn } from '@/shared/lib/utils';
 
-interface LogoProps {
+export interface LogoProps {
   /**
    * 로고 변형 스타일
    * - symbol: 심볼만 (V 로고)
