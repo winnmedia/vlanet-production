@@ -8,7 +8,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import type { TrendingVideo } from '@/entities/video';
-import { getTrendingVideos, formatDuration } from '@/entities/video';
+import { formatDuration } from '@/entities/video';
 import { Card } from '@/shared/ui/card';
 import { Button } from '@/shared/ui/button';
 
@@ -26,9 +26,13 @@ export function TrendingVideos({ limit = 6, showViewAll = true, className }: Tre
     const loadTrendingVideos = async () => {
       setIsLoading(true);
       try {
-        const result = await getTrendingVideos(limit);
-        if (result) {
-          setVideos(result);
+        const response = await fetch(`/api/videos/trending?limit=${limit}`);
+        const result = await response.json();
+
+        if (result.success && result.data) {
+          setVideos(result.data);
+        } else {
+          console.error('API 응답 오류:', result.error);
         }
       } catch (error) {
         console.error('트렌딩 영상 로드 오류:', error);

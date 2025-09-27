@@ -10,6 +10,8 @@ import {
   createComment as createCommentEntity,
   updateComment as updateCommentEntity,
   deleteComment as deleteCommentEntity,
+} from '@/entities/comment/api';
+import {
   type CreateCommentData,
   type UpdateCommentData,
   type CommentActionResult,

@@ -14,6 +14,8 @@ import {
   deleteProposal,
   createMessage,
   markNotificationAsRead,
+} from '@/entities/proposal/api';
+import {
   validateProposal,
   validateMessage,
   sanitizeProposalContent

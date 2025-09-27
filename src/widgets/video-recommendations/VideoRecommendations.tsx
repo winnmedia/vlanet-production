@@ -9,7 +9,6 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import type { VideoWithDetails } from '@/entities/video';
-import { getRelatedVideos, getTrendingVideos } from '@/entities/video';
 import { formatDuration, formatFileSize } from '@/entities/video';
 
 interface VideoRecommendationsProps {
@@ -51,14 +50,14 @@ export function VideoRecommendations({
 
         if (activeTab === 'related' && creatorId) {
           // 같은 창작자의 다른 영상 또는 관련 영상
-          result = await getRelatedVideos(currentVideoId, {
-            limit: 12,
-            excludeVideoId: currentVideoId,
-            preferSameCreator: true,
-          });
+          const response = await fetch(`/api/videos/related?videoId=${currentVideoId}&limit=12`);
+          const apiResult = await response.json();
+          result = apiResult.success ? apiResult.data : null;
         } else {
           // 트렌딩 영상
-          result = await getTrendingVideos(12);
+          const response = await fetch('/api/videos/trending?limit=12');
+          const apiResult = await response.json();
+          result = apiResult.success ? apiResult.data : null;
         }
 
         if (result) {

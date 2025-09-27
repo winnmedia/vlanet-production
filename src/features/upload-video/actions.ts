@@ -7,7 +7,7 @@
 
 import { createServerClient } from '@/shared/api/supabase/server';
 import { getCurrentUser } from '@/features/auth';
-import { createVideo, updateVideoStatus } from '@/entities/video';
+import { createVideo, updateVideoStatus } from '@/entities/video/api';
 import type { VideoUploadInput } from '@/entities/video';
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
