@@ -6,12 +6,12 @@
 'use client';
 
 import { useState } from 'react';
-import { DropZone, UploadProgress, createVideoUpload, completeVideoUpload, failVideoUpload } from '@/features/upload-video';
-import { Input } from '@/shared/ui/input';
-import { Button } from '@/shared/ui/button';
-import { Card } from '@/shared/ui/card';
-import type { VideoStatus } from '@/entities/video';
-import { validateVideoInput } from '@/entities/video';
+import { DropZone, UploadProgress, createVideoUpload, completeVideoUpload, failVideoUpload } from '../../features/upload-video';
+import { Input } from '../../shared/ui/input';
+import { Button } from '../../shared/ui/button';
+import { Card } from '../../shared/ui/card';
+import type { VideoStatus } from '../../entities/video';
+import { validateVideoInput } from '../../entities/video';
 import { CheckCircle, XCircle } from 'lucide-react';
 
 interface VideoFileInfo {
