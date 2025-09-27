@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import { SkipLink } from '@/shared/lib/accessibility';
-import { initWebVitals } from '@/shared/lib/performance/web-vitals';
+import { SkipLink } from '../shared/lib/accessibility';
+import { initWebVitals } from '../shared/lib/performance/web-vitals';
 
 const inter = Inter({ subsets: ['latin'] });
 

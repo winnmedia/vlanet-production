@@ -5,10 +5,10 @@
 
 import { Suspense } from 'react';
 import { Metadata } from 'next';
-import { signInWithGoogle } from '@/features/auth';
-import { Logo } from '@/shared/ui/logo';
-import { Button } from '@/shared/ui/button';
-import { Card } from '@/shared/ui/card';
+import { signInWithGoogle } from '../../features/auth';
+import { Logo } from '../../shared/ui/logo';
+import { Button } from '../../shared/ui/button';
+import { Card } from '../../shared/ui/card';
 import { Target } from 'lucide-react';
 
 export const metadata: Metadata = {
