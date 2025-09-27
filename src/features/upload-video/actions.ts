@@ -345,7 +345,7 @@ export async function deleteVideoAction(formData: FormData) {
     }
 
     // 영상 삭제 (소프트 삭제)
-    const { deleteVideo } = await import('@/entities/video');
+    const { deleteVideo } = await import('../../entities/video');
     const result = await deleteVideo(videoId, user.id);
 
     if (!result.success) {
