@@ -6,11 +6,11 @@
 import { Suspense } from 'react'
 import { Metadata } from 'next'
 import { notFound, redirect } from 'next/navigation'
-import { getCurrentUser } from '@/features/auth'
-import { getProposalsByUser } from '@/entities/proposal'
-import { ProposalStats } from '@/widgets/proposal-dashboard'
-import { ProposalList } from '@/features/contact'
-import { Card } from '@/shared/ui/card'
+import { getCurrentUser } from '../../../../features/auth'
+import { getProposalsByUser } from '../../../../entities/proposal'
+import { ProposalStats } from '../../../../widgets/proposal-dashboard'
+import { ProposalList } from '../../../../features/contact'
+import { Card } from '../../../../shared/ui/card'
 import { RefreshCw } from 'lucide-react'
 
 export const metadata: Metadata = {
