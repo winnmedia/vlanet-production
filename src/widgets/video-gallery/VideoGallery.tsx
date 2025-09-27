@@ -20,7 +20,8 @@ import {
   Share2,
   Globe,
   Lock,
-  FileText
+  FileText,
+  DollarSign
 } from 'lucide-react';
 import { Button } from '../../shared/ui/button';
 import type { VideoWithStats } from '../../entities/video';
@@ -31,6 +32,8 @@ interface VideoGalleryProps {
   onSort?: (sort: 'newest' | 'popular' | 'comments' | 'funding') => void;
   onFilter?: (filter: 'all' | 'public' | 'private' | 'draft') => void;
   className?: string;
+  showInvestButton?: boolean;
+  currentUserRole?: string;
 }
 
 /**
@@ -38,9 +41,11 @@ interface VideoGalleryProps {
  */
 interface VideoCardProps {
   video: VideoWithStats;
+  showInvestButton?: boolean;
+  currentUserRole?: string;
 }
 
-const VideoCard = memo(function VideoCard({ video }: VideoCardProps) {
+const VideoCard = memo(function VideoCard({ video, showInvestButton, currentUserRole }: VideoCardProps) {
   const [isHovered, setIsHovered] = useState(false);
 
   const statusConfig = {
@@ -92,6 +97,16 @@ const VideoCard = memo(function VideoCard({ video }: VideoCardProps) {
                   재생
                 </Button>
               </Link>
+
+              {/* TODO(human): 투자 제안 버튼 조건부 렌더링 */}
+              {showInvestButton && currentUserRole === 'FUNDER' && (
+                <Link href={`/proposal/create?videoId=${video.id}`}>
+                  <Button size="sm" variant="secondary" className="rounded-full bg-warning-500 hover:bg-warning-600 text-white border-warning-500">
+                    <DollarSign size={16} className="mr-1" />
+                    투자 제안
+                  </Button>
+                </Link>
+              )}
             </div>
           </div>
         )}
@@ -262,7 +277,9 @@ export function VideoGallery({
   loading = false,
   onSort,
   onFilter,
-  className
+  className,
+  showInvestButton,
+  currentUserRole
 }: VideoGalleryProps) {
   return (
     <div className={className}>
@@ -282,7 +299,12 @@ export function VideoGallery({
             ))
           : // 실제 영상 카드들
             videos.slice(0, 15).map((video) => (
-              <VideoCard key={video.id} video={video} />
+              <VideoCard
+                key={video.id}
+                video={video}
+                showInvestButton={showInvestButton}
+                currentUserRole={currentUserRole}
+              />
             ))}
       </div>
 

@@ -9,6 +9,7 @@ import { createServerClient } from '../../shared/api/supabase/server';
 import { getCurrentUser } from '../auth';
 import { createVideo, updateVideoStatus } from '../../entities/video/api';
 import type { VideoUploadInput } from '../../entities/video';
+import { VIDEO_CONSTRAINTS } from '../../entities/video';
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
 
@@ -19,11 +20,11 @@ const videoUploadSchema = z.object({
   title: z
     .string()
     .min(1, '제목은 필수입니다')
-    .max(100, '제목은 100자 이하여야 합니다'),
+    .max(VIDEO_CONSTRAINTS.MAX_TITLE_LENGTH, `제목은 ${VIDEO_CONSTRAINTS.MAX_TITLE_LENGTH}자 이하여야 합니다`),
 
   description: z
     .string()
-    .max(2000, '설명은 2000자 이하여야 합니다')
+    .max(VIDEO_CONSTRAINTS.MAX_DESCRIPTION_LENGTH, `설명은 ${VIDEO_CONSTRAINTS.MAX_DESCRIPTION_LENGTH}자 이하여야 합니다`)
     .optional(),
 
   ai_model: z
@@ -33,7 +34,7 @@ const videoUploadSchema = z.object({
 
   prompt: z
     .string()
-    .max(1000, '프롬프트는 1000자 이하여야 합니다')
+    .max(VIDEO_CONSTRAINTS.MAX_PROMPT_LENGTH, `프롬프트는 ${VIDEO_CONSTRAINTS.MAX_PROMPT_LENGTH}자 이하여야 합니다`)
     .optional(),
 
   tags: z
@@ -55,15 +56,15 @@ const videoUploadSchema = z.object({
   file_size: z
     .number()
     .min(1, '파일 크기는 0보다 커야 합니다')
-    .max(209715200, '파일 크기는 200MB 이하여야 합니다'),
+    .max(VIDEO_CONSTRAINTS.MAX_FILE_SIZE, `파일 크기는 ${Math.round(VIDEO_CONSTRAINTS.MAX_FILE_SIZE / 1024 / 1024)}MB 이하여야 합니다`),
 
   duration: z
     .number()
     .min(1, '영상 길이는 0보다 커야 합니다')
-    .max(120, '영상 길이는 2분 이하여야 합니다'),
+    .max(VIDEO_CONSTRAINTS.MAX_DURATION, `영상 길이는 ${Math.round(VIDEO_CONSTRAINTS.MAX_DURATION / 60)}분 이하여야 합니다`),
 
   width: z.number().min(1, '너비는 0보다 커야 합니다').optional(),
-  height: z.number().min(1, '높이는 0보다 커야 합니다').optional(),
+  height: z.number().min(1, '높이는 0보다 커야 합니다').max(VIDEO_CONSTRAINTS.MAX_RESOLUTION, `해상도는 ${VIDEO_CONSTRAINTS.MAX_RESOLUTION}p 이하여야 합니다`).optional(),
   fps: z.number().min(1, 'FPS는 0보다 커야 합니다').optional(),
 });
 

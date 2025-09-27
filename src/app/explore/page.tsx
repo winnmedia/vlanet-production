@@ -6,6 +6,7 @@
 import { Suspense } from 'react';
 import { Metadata } from 'next';
 import { getCurrentUser } from '../../features/auth';
+import { Header } from '../../widgets/header';
 import { TrendingVideos } from '../../widgets/trending-videos';
 import { Card } from '../../shared/ui/card';
 import { Button } from '../../shared/ui/button';
@@ -24,6 +25,9 @@ async function ExplorePageContent() {
 
   return (
     <div className="min-h-screen bg-secondary-50">
+      {/* 헤더 */}
+      <Header />
+
       {/* 페이지 헤더 */}
       <div className="bg-white border-b border-secondary-200">
         <div className="container mx-auto px-6 py-8">
@@ -250,6 +254,19 @@ function ModelCard({
 function ExplorePageLoading() {
   return (
     <div className="min-h-screen bg-secondary-50">
+      {/* 헤더 스켈레톤 */}
+      <div className="border-b border-secondary-200 bg-white/80 backdrop-blur-sm">
+        <div className="container mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="h-8 bg-secondary-200 rounded w-32 animate-pulse"></div>
+            <div className="flex items-center space-x-3">
+              <div className="h-8 bg-secondary-200 rounded w-16 animate-pulse"></div>
+              <div className="h-8 bg-secondary-200 rounded w-20 animate-pulse"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="bg-white border-b border-secondary-200">
         <div className="container mx-auto px-6 py-8">
           <div className="h-10 bg-secondary-200 rounded w-48 mb-4 animate-pulse"></div>

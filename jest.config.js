@@ -9,6 +9,7 @@ const createJestConfig = nextJest({
 const customJestConfig = {
   // 각 테스트 전에 실행할 설정 파일들
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  setupFiles: ['<rootDir>/jest.env.js'],
 
   // 테스트 환경 설정
   testEnvironment: 'jest-environment-jsdom',

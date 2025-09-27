@@ -9,8 +9,8 @@ import { useState, useEffect } from 'react'
 import { Bell, X, Eye, MessageSquare } from 'lucide-react'
 import { Button } from '../../shared/ui/button'
 import { Card } from '../../shared/ui/card'
+// import { getNotificationsByUser } from '../../entities/proposal/api' // TODO: 클라이언트 컴포넌트에서 서버 API 직접 호출 불가
 import {
-  getNotificationsByUser,
   getNotificationTypeText,
   getNotificationIcon,
   formatProposalTime
@@ -37,11 +37,11 @@ export function NotificationBell({
   const loadNotifications = async () => {
     setIsLoading(true)
     try {
-      const result = await getNotificationsByUser({
-        user_id: user.id,
-        limit: 10,
-        offset: 0
-      })
+      // TODO: 클라이언트 컴포넌트에서 서버 API 직접 호출 불가 - 임시 mock 데이터 사용
+      const result = {
+        notifications: [],
+        unread_count: 0
+      }
 
       setNotifications(result.notifications)
       setUnreadCount(result.unread_count)

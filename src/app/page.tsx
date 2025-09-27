@@ -4,7 +4,9 @@
  */
 
 import { Metadata } from 'next';
+import Link from 'next/link';
 import { getCurrentUser } from '../features/auth';
+import { Header } from '../widgets/header';
 import { Logo } from '../shared/ui/logo';
 import { Button } from '../shared/ui/button';
 import { Card } from '../shared/ui/card';
@@ -23,21 +25,7 @@ function LandingSection() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-primary-50">
       {/* 헤더 */}
-      <header className="border-b border-primary-100/50 bg-white/80 backdrop-blur-sm">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <Logo variant="full" theme="color" size="md" />
-            <div className="flex items-center gap-3">
-              <a href="/login">
-                <Button variant="outline" size="sm">로그인</Button>
-              </a>
-              <a href="/login">
-                <Button variant="primary" size="sm">시작하기</Button>
-              </a>
-            </div>
-          </div>
-        </div>
-      </header>
+      <Header />
 
       {/* 메인 콘텐츠 */}
       <main className="container mx-auto px-6 py-16">
@@ -132,21 +120,7 @@ function DashboardSection({ user }: { user: NonNullable<Awaited<ReturnType<typeo
   return (
     <div className="min-h-screen bg-secondary-50">
       {/* 헤더 */}
-      <header className="bg-white border-b border-secondary-200">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <Logo variant="full" theme="color" size="md" />
-            <div className="flex items-center gap-4">
-              <span className="text-sm text-secondary-600">
-                안녕하세요, {user.profile?.username || user.email}님
-              </span>
-              <Button variant="outline" size="sm">
-                설정
-              </Button>
-            </div>
-          </div>
-        </div>
-      </header>
+      <Header />
 
       {/* 메인 콘텐츠 */}
       <main className="container mx-auto px-6 py-8">
@@ -168,9 +142,11 @@ function DashboardSection({ user }: { user: NonNullable<Awaited<ReturnType<typeo
             <p className="text-secondary-600 mb-4">
               AI로 생성한 새로운 영상을 업로드하세요
             </p>
-            <Button variant="primary" size="sm">
-              업로드
-            </Button>
+            <Link href="/upload">
+              <Button variant="primary" size="sm">
+                업로드
+              </Button>
+            </Link>
           </Card>
 
           <Card className="p-6 card-hover">
@@ -180,9 +156,11 @@ function DashboardSection({ user }: { user: NonNullable<Awaited<ReturnType<typeo
             <p className="text-secondary-600 mb-4">
               업로드된 작품들을 관리하고 분석하세요
             </p>
-            <Button variant="outline" size="sm">
-              보러가기
-            </Button>
+            <Link href="/dashboard">
+              <Button variant="outline" size="sm">
+                보러가기
+              </Button>
+            </Link>
           </Card>
 
           <Card className="p-6 card-hover">
@@ -192,9 +170,11 @@ function DashboardSection({ user }: { user: NonNullable<Awaited<ReturnType<typeo
             <p className="text-secondary-600 mb-4">
               현재 투자 제안과 수익 현황을 확인하세요
             </p>
-            <Button variant="outline" size="sm">
-              확인
-            </Button>
+            <Link href="/dashboard/proposals">
+              <Button variant="outline" size="sm">
+                확인
+              </Button>
+            </Link>
           </Card>
         </div>
 

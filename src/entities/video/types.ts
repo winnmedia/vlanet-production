@@ -404,7 +404,8 @@ export interface VideoValidationError {
 // 업로드 제한 상수
 export const VIDEO_CONSTRAINTS = {
   MAX_FILE_SIZE: 209715200, // 200MB
-  MAX_DURATION: 120, // 2분
+  MAX_DURATION: 300, // 5분
+  MAX_RESOLUTION: 1080, // 1080p
   ALLOWED_FORMATS: ['mp4'],
   MAX_TITLE_LENGTH: 100,
   MAX_DESCRIPTION_LENGTH: 2000,

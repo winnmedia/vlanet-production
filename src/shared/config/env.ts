@@ -4,9 +4,12 @@ import { z } from 'zod';
 const supabaseUrlSchema = z
   .string()
   .url('올바른 Supabase URL을 입력해주세요')
-  .regex(
-    /^https:\/\/[a-z0-9]+\.supabase\.co$/,
-    'Supabase URL 형식이 올바르지 않습니다'
+  .refine(
+    (url) => {
+      // Supabase URL 패턴: https://[프로젝트ID].supabase.co
+      return /^https:\/\/[a-z0-9]+\.supabase\.co$/.test(url);
+    },
+    'Supabase URL 형식이 올바르지 않습니다 (예: https://xxx.supabase.co)'
   );
 
 // API 키 보안 검증 (최소 길이 및 패턴)
