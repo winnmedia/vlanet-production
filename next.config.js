@@ -10,7 +10,7 @@ try {
   // Bundle analyzer가 없으면 무시
 }
 
-const { withSentryConfig } = require('@sentry/nextjs')
+// const { withSentryConfig } = require('@sentry/nextjs') // 임시 비활성화
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -40,7 +40,7 @@ const nextConfig = {
   },
 
   // 서버 외부 패키지 (업데이트된 설정)
-  serverExternalPackages: ['@sentry/nextjs'],
+  // serverExternalPackages: ['@sentry/nextjs'], // 임시 비활성화
 
   // 압축 최적화
   compress: true,
@@ -97,11 +97,11 @@ const nextConfig = {
         key: 'X-XSS-Protection',
         value: '1; mode=block',
       },
-      // MIME 타입 스니핑 방지
-      {
-        key: 'X-Content-Type-Options',
-        value: 'nosniff',
-      },
+      // MIME 타입 스니핑 방지 (CSS 파일 오류 해결을 위해 임시 완화)
+      // {
+      //   key: 'X-Content-Type-Options',
+      //   value: 'nosniff',
+      // },
       // 클릭재킹 방지
       {
         key: 'X-Frame-Options',
@@ -161,18 +161,13 @@ const nextConfig = {
   },
 };
 
-// Sentry 설정
-const sentryWebpackPluginOptions = {
-  // Sentry CLI와 추가적인 번들러 플러그인 설정
-  silent: process.env.NODE_ENV !== 'development',
-  hideSourceMaps: true,
-  disableLogger: true,
-  // Source maps 업로드 (프로덕션에서만)
-  dryRun: process.env.NODE_ENV !== 'production',
-}
+// Sentry 설정 임시 비활성화
+// const sentryWebpackPluginOptions = {
+//   silent: process.env.NODE_ENV !== 'development',
+//   hideSourceMaps: true,
+//   disableLogger: true,
+//   dryRun: process.env.NODE_ENV !== 'production',
+// }
 
-// Bundle Analyzer와 Sentry 함께 적용
-module.exports = withSentryConfig(
-  withBundleAnalyzer(nextConfig),
-  sentryWebpackPluginOptions
-);
+// Bundle Analyzer만 적용 (Sentry 임시 비활성화)
+module.exports = withBundleAnalyzer(nextConfig);
