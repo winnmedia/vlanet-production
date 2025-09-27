@@ -3,7 +3,7 @@
  * Google OAuth 인증 완료 후 Supabase로 세션을 생성합니다
  */
 
-import { createServerClient } from '@/shared/api/supabase/server';
+import { createServerClient } from '../../../shared/api/supabase/server';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(request: NextRequest) {

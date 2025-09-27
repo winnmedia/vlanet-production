@@ -4,8 +4,8 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getNotificationsByUser } from '@/entities/proposal/api';
-import { createServerClient } from '@/shared/api/supabase/server';
+import { getNotificationsByUser } from '../../../../entities/proposal/api';
+import { createServerClient } from '../../../../shared/api/supabase/server';
 
 export async function GET(request: NextRequest) {
   try {

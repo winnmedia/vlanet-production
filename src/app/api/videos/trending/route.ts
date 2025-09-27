@@ -4,7 +4,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getTrendingVideos } from '@/entities/video/api';
+import { getTrendingVideos } from '../../../../entities/video/api';
 
 export async function GET(request: NextRequest) {
   try {
