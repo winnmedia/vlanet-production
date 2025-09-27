@@ -6,9 +6,9 @@
 'use client';
 
 import { useState } from 'react';
-import { Sidebar } from '@/widgets/sidebar';
-import { Header } from '@/widgets/header';
-import type { getCurrentUser } from '@/features/auth';
+import { Sidebar } from '../../widgets/sidebar';
+import { Header } from '../../widgets/header';
+import type { getCurrentUser } from '../../features/auth';
 
 interface DashboardLayoutClientProps {
   children: React.ReactNode;

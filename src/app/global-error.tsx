@@ -7,8 +7,8 @@
 
 import * as Sentry from '@sentry/nextjs';
 import { useEffect } from 'react';
-import { Button } from '@/shared/ui/button';
-import { Card } from '@/shared/ui/card';
+import { Button } from '../shared/ui/button';
+import { Card } from '../shared/ui/card';
 import { AlertTriangle, RefreshCw, Home } from 'lucide-react';
 
 interface GlobalErrorProps {
